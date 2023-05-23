@@ -11,6 +11,10 @@ public class VersionProvider implements IVersionProvider {
     }
 
     public static String vFromJAR() {
-        return "1.2"; // TODO implement
+        Package j = Package.getPackage("jacamo.cli");
+        if (j != null && j.getSpecificationVersion() != null) {
+            return j.getSpecificationVersion();
+        }
+        return "0.0.0";
     }
 }

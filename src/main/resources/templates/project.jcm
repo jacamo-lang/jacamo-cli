@@ -18,6 +18,8 @@ mas <PROJECT_NAME> {
 
     <JCM_ENV>
 
+    <JCM_ORG>
+
     <PLATFORM>
 
 }

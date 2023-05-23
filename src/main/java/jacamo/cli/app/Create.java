@@ -140,6 +140,8 @@ public class Create extends Common implements Runnable {
                 l = l.replace("<SUPER_CLASS>", "Artifact");
                 l = l.replace("<JCM_ENV>", "workspace w {\n      artifact c1: example.Counter(3) \n    }");
 
+                l = l.replace("<JCM_ORG>", "organisation o: org.xml {\n      group g1 : group1 {\n        players: bob role1\n      }\n    }");
+
                 l = l.replace("<ORGANIZATION_NAME>", id);
                 l = l.replace("<DEPENDENCIES>", "");
 

@@ -17,10 +17,6 @@ public class Run extends Common {
 
         var created = getOrCreateGradleFile( jcm );
 
-        if (verbose) {
-//            System.out.println(Config.get().getPresentation());
-        }
-
         var jcmDepsFile = new File(projectDir.getAbsoluteFile()+"/.jcm-deps.gradle");
         if (!jcmDepsFile.exists()) {
             Create.copyFile(jcm,"jcm-deps.gradle", new File( projectDir + "/.jcm-deps.gradle"), true);

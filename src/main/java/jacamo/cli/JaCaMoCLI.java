@@ -28,11 +28,9 @@ public class JaCaMoCLI {
         if (args.length == 0) {
             startTerminal();
         } else if (args.length >= 1 && args[0].endsWith(".jcm")) {
-            new Run().run(args[0], args.length == 2 && args[1].equals("-v"));
+            new Run().run(args[0], true); //args.length == 2 && args[1].equals("-v"));
         } else {
             int exitCode = new CommandLine(new JaCaMoCommands()).execute(args);
-//            if (!RunningMASs.hasLocalRunningMAS())
-//                System.exit(exitCode);
         }
     }
 
