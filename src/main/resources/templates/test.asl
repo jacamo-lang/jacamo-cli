@@ -1,7 +1,7 @@
 // Agent that tests '<AG_NAME>' in project <PROJECT_NAME>
 
 // includes target agent to tests
-{ include("<AG_NAME>.asl") }
+{ include("sample_agent.asl") }
 
 // includes test library
 { include("tester_agent.asl") } // from JaCaMo
