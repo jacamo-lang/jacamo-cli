@@ -45,6 +45,10 @@ public class Create extends Common implements Runnable {
 //
         try {
             var path = new File(masName);
+            var p = masName.lastIndexOf("/");
+            if (p > 0) {
+                masName = masName.substring(p+1);
+            }
             if (path.exists()) {
                 parent.parent.errorMsg("a directory for application '"+masName+"' exists already, chose another name for your MAS.");
                 return;
