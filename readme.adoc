@@ -56,5 +56,6 @@ Moise Http Server running on http://127.0.0.1:3271
 [bob] focusing on artifact o (at workspace /main/o) using namespace default
 [bob] focus on o: done
 
-[bob] hello world.```
+[bob] hello world.
+```
 
