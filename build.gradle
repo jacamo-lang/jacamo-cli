@@ -2,7 +2,7 @@
    JaCaMo Command Line Interpreter build file
 */
 
-defaultTasks 'build'
+defaultTasks 'createBin'
 
 apply plugin: 'java-library'
 
