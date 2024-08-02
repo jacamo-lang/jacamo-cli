@@ -59,3 +59,10 @@ Moise Http Server running on http://127.0.0.1:3271
 [bob] hello world.
 ```
 
+# Building
+
+You can build this project from sources with
+
+```
+./gradlew createBin
+```
