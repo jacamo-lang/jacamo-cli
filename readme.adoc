@@ -1,5 +1,4 @@
 = Command Line Interface (CLI) for JaCaMo
-:toc: right
 
 The JaCaMo CLI is a command-line interface tool that you use to initialize, develop, and maintain JaCaMo applications directly from a command shell at design and run time.
 
