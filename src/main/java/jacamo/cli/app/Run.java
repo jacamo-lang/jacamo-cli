@@ -1,5 +1,9 @@
 package jacamo.cli.app;
 
+import org.gradle.tooling.ProjectConnection;
+import org.gradle.tooling.model.GradleProject;
+import org.gradle.tooling.model.Task;
+
 import java.io.File;
 
 
@@ -23,14 +27,26 @@ public class Run extends Common {
         }
 
         try (var connection = getGradleConnection(projectDir)) {
-            getGradleBuild(connection, verbose, true)
-                    .forTasks("buildJCMDeps")
-                    .run();
+
+            if (gradleHasTask("buildJCMDeps", connection)) {
+                getGradleBuild(connection, verbose, true)
+                        .forTasks("buildJCMDeps")
+                        .run();
+            }
             getGradleBuild(connection, verbose, true)
                     .forTasks("run")
                     .run();
         } catch (Exception e) {
-            System.err.println("Error running 'gradle run'");
+            System.err.println("Error running 'gradle run': "+e.getClass());
         }
+    }
+
+    boolean gradleHasTask(String taskName, ProjectConnection connection) {
+        GradleProject project = connection.getModel(GradleProject.class);
+        for (Task task : project.getTasks()) {
+            if (task.getName().equals( taskName))
+                return true;
+        }
+        return false;
     }
 }

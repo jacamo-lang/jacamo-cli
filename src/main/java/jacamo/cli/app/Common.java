@@ -7,6 +7,8 @@ import org.gradle.tooling.ProjectConnection;
 import java.io.File;
 import java.io.IOException;
 
+import static jacamo.cli.app.Create.copyFile;
+
 
 public class Common {
     protected File getProjectFile(String masName) {
@@ -67,6 +69,16 @@ public class Common {
             } catch (IOException e) {}
         }
 
+        // checks jcm-deps
+        var deps = new File(projectDir+"/.jcm-deps.gradle");
+        if (!deps.exists()) {
+            try {
+                copyFile(masName,"jcm-deps.gradle", deps, true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         var f = new File(projectDir+"/build.gradle");
         if (f.exists())
             return false;
@@ -85,7 +97,7 @@ public class Common {
 
         // create a temp file
         //f = new File(projectDir+"/.build-temp.gradle"); // does not work with gradle
-        Create.copyFile(masName, "build.gradle", f, true);
+        copyFile(masName, "build.gradle", f, true);
         return true;
     }
 }   
