@@ -7,8 +7,8 @@ import picocli.CommandLine.Command;
 @Command(
     name = "app",
     description = "commands to handle (the sources of) applications",
-    subcommands = { Create.class  },
-    synopsisSubcommandLabel = "(create)"
+    subcommands = { Create.class, Compile.class  },
+    synopsisSubcommandLabel = "(create | compile)"
 )
 public class Application {
 

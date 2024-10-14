@@ -58,6 +58,17 @@ Moise Http Server running on http://127.0.0.1:3271
 [bob] hello world.
 ```
 
+
+Another usual option is to create an uber jar that allows you to run the application with only java:
+
+```
+jacamo app create app2 --console
+cd app2
+jacamo app compile
+java -jar build/libs/jacamo-app2-1.0-all.jar
+```
+
+
 # Building
 
 You can build this project from sources with
