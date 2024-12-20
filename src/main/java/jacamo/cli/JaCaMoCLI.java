@@ -1,6 +1,9 @@
 package jacamo.cli;
 
+import jacamo.cli.app.Application;
 import jacamo.cli.app.Run;
+import jason.cli.agent.Agent;
+import jason.cli.mas.MAS;
 import org.fusesource.jansi.AnsiConsole;
 import org.jline.builtins.ConfigurationPath;
 import org.jline.console.SystemRegistry;
@@ -21,6 +24,7 @@ import java.nio.file.Paths;
 import java.util.function.Supplier;
 
 // program "inspired" by https://github.com/remkop/picocli/tree/v4.7.1/picocli-shell-jline3
+// see https://picocli.info/#_sharing_options_in_subcommands
 
 public class JaCaMoCLI {
 
@@ -30,8 +34,16 @@ public class JaCaMoCLI {
         } else if (args.length >= 1 && args[0].endsWith(".jcm")) {
             new Run().run(args[0], true); //args.length == 2 && args[1].equals("-v"));
         } else {
-            int exitCode = new CommandLine(new JaCaMoCommands()).execute(args);
+            var cmd = new CommandLine(new JaCaMoCommands());
+            addSubCmd(cmd);
+            int exitCode = cmd.execute(args);
         }
+    }
+
+    static void addSubCmd(CommandLine cmd) {
+        cmd.addSubcommand("app", new Application());
+        cmd.addSubcommand("mas", new MAS());
+        cmd.addSubcommand("agent", new Agent());
     }
 
     static void startTerminal() {
@@ -51,6 +63,8 @@ public class JaCaMoCLI {
             // PicocliCommandsFactory factory = new PicocliCommandsFactory(customFactory); // chain the factories
 
             CommandLine cmd = new CommandLine(jacamoCommands, factory);
+            addSubCmd(cmd);
+
             PicocliCommands picocliCommands = new PicocliCommands(cmd);
 
             var parser = new DefaultParser();

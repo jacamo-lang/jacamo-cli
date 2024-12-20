@@ -34,6 +34,7 @@ dependencies {
     api 'info.picocli:picocli-shell-jline3:4.7.0'
     api 'org.jline:jline:3.22.0'
     api 'org.fusesource.jansi:jansi:2.4.0'
+    api 'io.github.jason-lang:jason-cli:3.3.0'
 
     api 'org.gradle:gradle-tooling-api:8.10'
     //testImplementation group: 'junit', name: 'junit', version: '4.12'
@@ -72,6 +73,7 @@ task run (type: JavaExec, dependsOn: 'build') {
 }
 
 task uberJar(type: Jar, dependsOn: ['classes']) {
+    group = "build"
     description 'creates a single runnable jar file with all dependencies'
     duplicatesStrategy 'exclude'
 
@@ -88,6 +90,8 @@ task uberJar(type: Jar, dependsOn: ['classes']) {
 }
 
 task createBin (dependsOn: ['uberJar']) {
+    group = "build"
+
     def wdir = 'build/bin'
     doFirst {
         exec {
