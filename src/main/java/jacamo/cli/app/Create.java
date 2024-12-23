@@ -158,7 +158,7 @@ public class Create extends Common implements Runnable {
     }
 
     public static InputStream getDefaultResource(String templateName) throws IOException {
-        return JaCaMoCLI.class.getResource("/templates/"+templateName).openStream();
+        return JaCaMoCLI.class.getResource("/jcm_templates/"+templateName).openStream();
     }
 
 }
