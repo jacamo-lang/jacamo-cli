@@ -2,6 +2,15 @@
 
 The JaCaMo CLI is a command-line interface tool that you use to initialize, develop, and maintain JaCaMo applications directly from a command shell at design and run time.
 
+## Downloading
+
+++++
+<a href="https://github.com/chon-group/win-jacamo">
+  <img src="https://img.shields.io/badge/for-Windows-blue?style=for-the-badge"></a> <a href="https://github.com/chon-group/dpkg-jacamo"><img src="https://img.shields.io/badge/for-Linux%20(Apt)-green?style=for-the-badge"></a>
+++++
+
+## Using
+
 
 New applications can be created with:
 
