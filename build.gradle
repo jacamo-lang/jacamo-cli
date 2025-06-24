@@ -34,7 +34,7 @@ dependencies {
     api 'info.picocli:picocli-shell-jline3:4.7.0'
     api 'org.jline:jline:3.22.0'
     api 'org.fusesource.jansi:jansi:2.4.0'
-    api 'io.github.jason-lang:jason-cli:3.3.0'
+    api 'io.github.jason-lang:jason-cli:3.3.1'
 
     api 'org.gradle:gradle-tooling-api:8.10'
     //testImplementation group: 'junit', name: 'junit', version: '4.12'
@@ -88,7 +88,24 @@ task uberJar(type: Jar, dependsOn: ['classes']) {
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
+task createBin (type: JavaExec, dependsOn: 'uberJar') {
+    mainClass = 'jason.cli.tools.CreateJasonCLIBin'
+    args = [ 'build/bin/jacamo', 'build/bin/jacamo-cli-all-' + "${jacamoVersion}" + '.jar']
+    standardInput = System.in
+    classpath sourceSets.main.runtimeClasspath
+    doLast {
+        copy {
+            from 'src/main/resources/scripts/jacamo.sh'
+            into 'build/bin'
+        }
+        copy {
+            from 'build/bin/jacamo'
+            into 'bin'
+        }
+    }
+}
 
+/* // replaced by the above task (that does not reply in a shell script)
 task createBin (dependsOn: ['uberJar']) {
     group = "build"
 
@@ -110,4 +127,6 @@ task createBin (dependsOn: ['uberJar']) {
         }
     }
 }
+*/
+
 
